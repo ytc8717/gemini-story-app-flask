@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Story</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-center mb-4">Image to Story</h1>
+                        <form action="/" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                            <div class="form-group">
+                                <label for="image">Upload an Image:</label>
+                                <input type="file" class="form-control-file" id="image" name="image" accept="image/*" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span class="spinner">
+                                    <div class="spinner-border spinner-border-sm" role="status"></div>
+                                </span>
+                                Generate Story
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if error_message %}
+        <div class="mt-4 fade-in">
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+        </div>
+        {% endif %}
+        {% if success_message %}
+        <div class="mt-4 fade-in">
+            <div class="alert alert-success" role="alert">
+                {{ success_message }}
+            </div>
+        </div>
+        {% endif %}
+        {% if generated_story %}
+        <div class="mt-4 fade-in">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Generated Story:</h2>
+                    <div class="story-container">
+                        <img id="preview" src="{{ user_image }}" alt="Image preview" class="img-thumbnail">
+                        <p class="card-text" id="story">{{ generated_story }}</p> <!-- Add an id for the story element -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Add JavaScript for animation and pop-up dialog -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

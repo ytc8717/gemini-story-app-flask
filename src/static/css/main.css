@@ -1,0 +1,35 @@
+/* Custom CSS for animation */
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.fade-in.show {
+    opacity: 1;
+}
+
+/* Loading spinner */
+.spinner {
+    display: none;
+}
+.loading {
+    display: block;
+}
+
+/* Custom CSS for image preview */
+#preview {
+    max-width: 50%;
+    max-height: 300px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+/* Custom CSS for flexbox layout */
+.story-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Custom CSS for story format */
+#story {
+    white-space: pre-wrap; /* Preserve line breaks in the generated story */
+}
